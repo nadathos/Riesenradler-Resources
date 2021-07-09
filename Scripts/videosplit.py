@@ -51,8 +51,10 @@ if __name__ == '__main__':
                 try:
                     for I in range(Chunks):
                         StartSec = I*args.length
-                        EndSec = max((I+1)*args.length, FileLength)
+                        EndSec = min((I+1)*args.length, FileLength)
                         DestFile = DestFileBase.parent / (DestFileBase.stem + f"_{I}" + DestFileBase.suffix)
+
+                        print(f'Current Start {StartSec}, end {EndSec}, difference {EndSec-StartSec}\nFilelength {FileLength}')
 
                         if os.path.isfile(DestFile):
                             os.remove(DestFile)
